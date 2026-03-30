@@ -69,21 +69,15 @@ body::after {
         padding: 0;
         border: none;
         width: 8.5in;
-        min-height: 11in;
+        height: 11in;
         page-break-after: always;
         background: #ffffff;
+        display: flex;
+        flex-direction: column;
     }
     .no-print { display: none !important; }
     .page-wrapper { padding-top: 0 !important; }
-    .letter-body { padding: 20px 48px 24px 48px !important; line-height: 1.6 !important; }
-    .letter-body p { margin-bottom: 12px !important; }
-    .section-header { margin-top: 16px !important; margin-bottom: 5px !important; padding: 5px 0 5px 10px !important; }
-    .letter-body ul { margin: 5px 0 10px 0 !important; }
-    .letter-body ul li { margin-bottom: 3px !important; }
-    .contact-rule { margin-top: 14px !important; }
-    .contact-single { padding: 12px 16px !important; }
-    .contact-footer { padding: 6px 16px !important; }
-    .qr-block { margin-top: 8px !important; padding: 8px !important; }
+    .letter-body { flex: 1; }
 }
 
 /* ================================================================
@@ -165,17 +159,17 @@ body::after {
    BODY
    ================================================================ */
 .letter-body {
-    padding: 24px 48px 32px 48px;
+    padding: 32px 40px 20px 40px;
     color: var(--ink);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5pt;
-    line-height: 1.7;
+    font-size: 8.5pt;
+    line-height: 1.75;
     font-weight: 400;
     letter-spacing: 0.01em;
 }
 
 .letter-body p {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .letter-body p:last-child {
@@ -187,42 +181,52 @@ body::after {
    ================================================================ */
 .section-header {
     font-family: 'Inter', sans-serif;
-    font-size: 9pt;
+    font-size: 6.5pt;
     font-weight: 900;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--ink);
-    margin-top: 20px;
-    margin-bottom: 6px;
-    padding: 6px 0 6px 10px;
-    border-left: 3px solid var(--gold);
-    line-height: 1.2;
+    color: var(--gold);
+    margin-top: 16px;
+    margin-bottom: 10px;
+    padding: 0;
+    border-left: none;
+    line-height: 1;
 }
 
 /* ================================================================
    BULLET LISTS
    ================================================================ */
 .letter-body ul {
-    margin: 6px 0 12px 0;
+    margin: 0 0 10px 0;
     padding: 0;
     list-style: none;
 }
 
 .letter-body ul li {
-    margin-bottom: 4px;
-    font-size: 9.5pt;
+    margin-bottom: 3px;
+    font-size: 8.5pt;
     line-height: 1.6;
-    padding-left: 16px;
+    padding-left: 0;
     position: relative;
 }
 
 .letter-body ul li::before {
-    content: '/';
-    position: absolute;
-    left: 0;
-    top: 0;
-    color: var(--gold);
-    font-weight: 700;
+    display: none;
+}
+
+/* Two-column spec list */
+.letter-body ul.specs-grid {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    column-gap: 0;
+    row-gap: 2px;
+    padding-right: 0;
+}
+
+.letter-body ul.specs-grid li {
+    margin-bottom: 2px;
+    font-size: 8pt;
+    line-height: 1.55;
 }
 
 /* ================================================================
@@ -318,49 +322,84 @@ body::after {
    CONTACT BLOCK
    ================================================================ */
 .contact-rule {
-    height: 1px;
-    background: var(--rule-light);
+    height: 0.5px;
+    background: var(--ink);
     border: none;
-    margin: 20px 0 0 0;
+    margin: 28px 0 0 0;
+}
+
+.contact-qr-row {
+    display: flex;
+    align-items: center;
+    padding: 20px 0 16px 0;
+    gap: 0;
+}
+
+.contact-qr-row__info {
+    flex: 1;
 }
 
 .contact-single {
-    text-align: center;
-    padding: 14px 16px;
-    margin-top: 1px;
+    text-align: left;
+    padding: 0;
+    margin-top: 0;
 }
 
 .contact-single__label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 7px;
-    letter-spacing: 0.15em;
+    font-size: 6.5px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .contact-single__phone {
-    font-family: 'JetBrains Mono', monospace;
-    font-weight: 700;
-    font-size: 15px;
-    letter-spacing: 0.08em;
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 0.04em;
     color: var(--ink);
 }
 
 .contact-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    border-top: 1px solid var(--rule-light);
+    justify-content: flex-start;
+    padding: 8px 0 0 0;
+    border-top: none;
 }
 
 .contact-footer__hours {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 7.5px;
+    font-size: 7px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: var(--ink-light);
+}
+
+.contact-qr-row__qr {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
+    border: none;
+    padding: 0;
+    margin-left: auto;
+}
+
+.contact-qr-row__qr svg {
+    width: 76px;
+    height: 76px;
+    display: block;
+    margin: 0 0 4px auto;
+}
+
+.contact-qr-row__qr .qr-sub {
+    font-size: 6px;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-align: right;
 }
 
 .qr-block {
@@ -430,6 +469,22 @@ body::after {
 .page-wrapper {
     padding-top: 48px;
 }
+
+.legal-disclaimer {
+    padding: 8px 0 12px;
+    text-align: center;
+    border-top: none;
+    margin-top: 0;
+}
+
+.legal-disclaimer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    color: var(--ink-light);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -458,16 +513,23 @@ body::after {
 
     <div class="letter-body" contenteditable="true">
         <p>Last time we reached out, we mentioned a development less than two miles from where you land. You've already chosen this area -- the question is whether you have the right space waiting when you arrive. Mountain View Commons is less than two miles from the airport, off Airport Road and Hwy 40. Here's what we built and why it matters.</p>
-        <p class="section-header">The Space: ~5,000 sq ft across three stories.</p>
-        <p>Ground floor: 30' x 60' with 16' roll-up garage doors on both sides. Drive-through access, front and rear. Room for vehicles, RVs, boats, or anything that doesn't fit in a hotel lot. Upper floors are fully configurable -- 1 to 3 bedrooms, office space, a full kitchen, or income-producing lease space. Four floor plans available: The Hideout (1BR), The Frontier (2BR), The Outlaw (3BR), or The Mercantile (all-commercial).</p>
-        <p class="section-header">Pricing</p>
+        <p class="section-header">The Space</p>
+        <ul>
+            <li>~5,000 sq ft across three stories</li>
+            <li>30' x 60' ground floor with 16' roll-up garage doors, both sides</li>
+            <li>Drive-through access, front and rear</li>
+            <li>Room for vehicles, RVs, boats, or a full workshop</li>
+            <li>Upper floors: 1-3 BR, office, kitchen, or commercial lease space</li>
+        </ul>
+        <p>Four floor plans available: The Hideout (1BR), The Frontier (2BR), The Outlaw (3BR), or The Mercantile (all-commercial).</p>
+        <p class="section-header">Finishing &amp; Pricing</p>
         <ul>
             <li>Interior shell units: $1,050,000 (~$200/sq ft)</li>
             <li>End and duplex shell units: $1,250,000 (~$250/sq ft)</li>
             <li>Finished packages: $1,900,000 to $2,450,000 (~$400/sq ft)</li>
         </ul>
         <p>Shell units are delivered ready for your contractor or our build team. Finished packages are turnkey with a certificate of occupancy.</p>
-        <p class="section-header">The Market: Why Heber, why now.</p>
+        <p class="section-header">The Opportunity</p>
         <ul>
             <li>Deer Valley's $1 billion expansion -- 15 minutes door-to-door</li>
             <li>Wasatch County is the host market for the 2034 Winter Olympics</li>
@@ -475,20 +537,30 @@ body::after {
             <li>412 parking stalls across the development (~9 per unit)</li>
             <li>Demising walls can be removed to combine units horizontally</li>
         </ul>
-        <p>You already have the hardest part figured out -- you can get here in hours, not days. Store your gear on the ground floor. Live or work above. Use it yourself, lease it out, or both. No other development in this market offers that combination at this location.</p>
-        <p class="section-header" style="margin-top: 24px;">See the model unit in person</p>
+        <p style="margin-bottom: 0;">You already have the hardest part figured out -- you can get here in hours, not days. Store your gear on the ground floor. Live or work above. Use it yourself, lease it out, or both. No other development in this market offers that combination at this location.</p>
+        <p class="section-header" style="margin-top: 28px;">See the Model Unit in Person</p>
 
     <hr class="contact-rule">
-    <div class="contact-single">
-        <div class="contact-single__label">Schedule a Private Tour</div>
-        <div class="contact-single__phone">435.503.3293</div>
+    <div class="contact-qr-row">
+        <div class="contact-qr-row__info">
+            <div class="contact-single">
+                <div class="contact-single__label">Schedule a Private Tour</div>
+                <div class="contact-single__phone">435.503.3293</div>
+            </div>
+            <div class="contact-footer">
+                <span class="contact-footer__hours">Open House: Tues - Fri, 1 - 5 PM &middot; Sat, 11 AM - 3 PM</span>
+            </div>
+        </div>
+        <div class="contact-qr-row__qr">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><defs><clipPath id="clip-bg"><path d="M0 0h220v220H0z"/></clipPath><clipPath id="clip-dot"><path d="M65 11h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-96 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-72 6h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-78 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zM17 59h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zM17 65h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zM11 71h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zM23 77h6v6h-6zm42 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zM23 83h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zM11 89h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zM17 95h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-180 6h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-168 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-186 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-180 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm48 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-144 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm-186 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-168 6h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-162 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm42 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-144 6h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm30 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-54 6h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6z"/></clipPath><clipPath id="clip-sq00"><path d="M11 11v42h42V11zm6 6h30v30H17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d00"><path d="M23 23h18v18H23z"/></clipPath><clipPath id="clip-sq10"><path d="M209 11h-42v42h42zm-6 6v30h-30V17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d10"><path d="M197 23v18h-18V23z"/></clipPath><clipPath id="clip-sq01"><path d="M11 209h42v-42H11zm6-6v-30h30v30z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d01"><path d="M23 197v-18h18v18z"/></clipPath></defs><path fill="none" d="M0 0h220v220H0z" clip-path="url(#clip-bg)"/><path fill="#130C0E" d="M0 0h220v220H0z" clip-path="url(#clip-dot)"/><path fill="#130C0E" d="M11 11h42v42H11z" clip-path="url(#clip-sq00)"/><path fill="#130C0E" d="M23 23h18v18H23z" clip-path="url(#clip-d00)"/><path fill="#130C0E" d="M167 11h42v42h-42z" clip-path="url(#clip-sq10)"/><path fill="#130C0E" d="M179 23h18v18h-18z" clip-path="url(#clip-d10)"/><path fill="#130C0E" d="M11 167h42v42H11z" clip-path="url(#clip-sq01)"/><path fill="#130C0E" d="M23 179h18v18H23z" clip-path="url(#clip-d01)"/></svg>
+            <div class="qr-sub">Scan for floor plans, pricing &amp; showings</div>
+        </div>
     </div>
-    <div class="contact-footer">
-        <span class="contact-footer__hours">Open House: Tues - Fri, 1 - 5 PM &middot; Sat, 11 AM - 3 PM</span>
-    </div>
-    <div class="qr-block">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><defs><clipPath id="clip-bg"><path d="M0 0h220v220H0z"/></clipPath><clipPath id="clip-dot"><path d="M65 11h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-96 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-72 6h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-78 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zM17 59h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zM17 65h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zM11 71h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zM23 77h6v6h-6zm42 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zM23 83h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zM11 89h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zM17 95h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-180 6h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-168 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-186 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-180 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm48 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-144 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm-186 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-168 6h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-162 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm42 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-144 6h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm30 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-54 6h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6z"/></clipPath><clipPath id="clip-sq00"><path d="M11 11v42h42V11zm6 6h30v30H17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d00"><path d="M23 23h18v18H23z"/></clipPath><clipPath id="clip-sq10"><path d="M209 11h-42v42h42zm-6 6v30h-30V17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d10"><path d="M197 23v18h-18V23z"/></clipPath><clipPath id="clip-sq01"><path d="M11 209h42v-42H11zm6-6v-30h30v30z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d01"><path d="M23 197v-18h18v18z"/></clipPath></defs><path fill="none" d="M0 0h220v220H0z" clip-path="url(#clip-bg)"/><path fill="#130C0E" d="M0 0h220v220H0z" clip-path="url(#clip-dot)"/><path fill="#130C0E" d="M11 11h42v42H11z" clip-path="url(#clip-sq00)"/><path fill="#130C0E" d="M23 23h18v18H23z" clip-path="url(#clip-d00)"/><path fill="#130C0E" d="M167 11h42v42h-42z" clip-path="url(#clip-sq10)"/><path fill="#130C0E" d="M179 23h18v18h-18z" clip-path="url(#clip-d10)"/><path fill="#130C0E" d="M11 167h42v42H11z" clip-path="url(#clip-sq01)"/><path fill="#130C0E" d="M23 179h18v18H23z" clip-path="url(#clip-d01)"/></svg>
-        <div class="qr-sub">Scan for floor plans, pricing &amp; showings</div>
+
+    <hr class="contact-rule" style="margin-top: 12px;">
+
+    <div class="legal-disclaimer">
+        <p>&copy;2026 Christie&rsquo;s International Real Estate. All Rights Reserved. This Christie&rsquo;s International Real Estate brokerage is independently owned and operated and fully supports the principles of the Fair Housing Act and is an Equal Opportunity Employer. All information should be independently reviewed and verified for accuracy. If you are currently working with a Realtor, this is not intended as a solicitation.</p>
     </div>
 
     </div>

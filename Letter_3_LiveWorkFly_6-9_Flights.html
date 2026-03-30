@@ -69,24 +69,15 @@ body::after {
         padding: 0;
         border: none;
         width: 8.5in;
-        min-height: 11in;
+        height: 11in;
         page-break-after: always;
         background: #ffffff;
+        display: flex;
+        flex-direction: column;
     }
     .no-print { display: none !important; }
     .page-wrapper { padding-top: 0 !important; }
-    .letter-body { padding: 24px 48px 24px 48px !important; line-height: 1.6 !important; }
-    .letter-body p { margin-bottom: 12px !important; }
-    .headline { font-size: 36pt !important; margin-top: 8px !important; }
-    .subheadline { margin-bottom: 20px !important; margin-top: 8px !important; }
-    .block-header { font-size: 18pt !important; margin-top: 16px !important; }
-    .block-subhead { margin-bottom: 6px !important; }
-    .block-body { margin-bottom: 10px !important; line-height: 1.6 !important; }
-    .section-header { margin-top: 20px !important; margin-bottom: 4px !important; padding: 5px 0 5px 10px !important; }
-    .contact-rule { margin-top: 16px !important; }
-    .contact-single { padding: 14px 16px !important; }
-    .contact-footer { padding: 8px 16px !important; }
-    .qr-block { margin-top: 10px !important; padding: 10px !important; }
+    .letter-body { flex: 1; }
 }
 
 /* ================================================================
@@ -168,17 +159,17 @@ body::after {
    BODY
    ================================================================ */
 .letter-body {
-    padding: 24px 48px 32px 48px;
+    padding: 48px 52px 32px 52px;
     color: var(--ink);
     font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5pt;
-    line-height: 1.7;
+    font-size: 8.5pt;
+    line-height: 1.65;
     font-weight: 400;
     letter-spacing: 0.01em;
 }
 
 .letter-body p {
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .letter-body p:last-child {
@@ -213,8 +204,8 @@ body::after {
 
 .letter-body ul li {
     margin-bottom: 4px;
-    font-size: 9.5pt;
-    line-height: 1.6;
+    font-size: 8.5pt;
+    line-height: 1.55;
     padding-left: 16px;
     position: relative;
 }
@@ -235,13 +226,13 @@ body::after {
     text-align: center;
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 36pt;
+    font-size: 28pt;
     text-transform: uppercase;
-    letter-spacing: -0.03em;
-    line-height: 0.9;
+    letter-spacing: -0.02em;
+    line-height: 0.95;
     color: var(--ink);
     margin-top: 8px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .headline .gold { color: var(--gold); }
@@ -253,46 +244,51 @@ body::after {
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 20px;
+    margin-bottom: 36px;
     margin-top: 8px;
 }
 
 .block-header {
     font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 18pt;
+    font-size: 16pt;
     letter-spacing: -0.02em;
     text-transform: uppercase;
     color: var(--ink);
-    margin-top: 14px;
+    margin-top: 4px;
     margin-bottom: 0;
     line-height: 1;
 }
 
 .block-idx {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 8px;
+    font-size: 9px;
     color: var(--gold);
-    letter-spacing: 0.15em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     display: block;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    margin-top: 40px;
+}
+
+.block-idx:first-of-type {
+    margin-top: 0;
 }
 
 .block-subhead {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 8pt;
+    font-size: 7.5pt;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--ink-light);
-    margin-bottom: 6px;
-    margin-top: 2px;
+    margin-bottom: 8px;
+    margin-top: 4px;
 }
 
 .block-body {
-    font-size: 9pt;
-    margin-bottom: 8px;
-    line-height: 1.65;
+    font-size: 9.5pt;
+    margin-bottom: 0;
+    line-height: 1.8;
 }
 
 .specs-header {
@@ -324,13 +320,24 @@ body::after {
     height: 1px;
     background: var(--rule-light);
     border: none;
-    margin: 20px 0 0 0;
+    margin: 14px 0 0 0;
+}
+
+.contact-qr-row {
+    display: flex;
+    align-items: center;
+    padding: 12px 24px;
+    gap: 20px;
+}
+
+.contact-qr-row__info {
+    flex: 1;
 }
 
 .contact-single {
-    text-align: center;
-    padding: 14px 16px;
-    margin-top: 1px;
+    text-align: left;
+    padding: 0;
+    margin-top: 0;
 }
 
 .contact-single__label {
@@ -353,9 +360,9 @@ body::after {
 .contact-footer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 8px 16px;
-    border-top: 1px solid var(--rule-light);
+    justify-content: flex-start;
+    padding: 6px 0 0 0;
+    border-top: none;
 }
 
 .contact-footer__hours {
@@ -366,22 +373,21 @@ body::after {
     color: var(--ink-light);
 }
 
-.qr-block {
+.contact-qr-row__qr {
     text-align: center;
-    margin-top: 10px;
-    padding: 8px;
     font-family: 'JetBrains Mono', monospace;
+    flex-shrink: 0;
 }
 
-.qr-block svg {
-    width: 80px;
-    height: 80px;
+.contact-qr-row__qr svg {
+    width: 72px;
+    height: 72px;
     display: block;
-    margin: 0 auto 6px auto;
+    margin: 0 auto 4px auto;
 }
 
-.qr-block .qr-sub {
-    font-size: 7.5px;
+.contact-qr-row__qr .qr-sub {
+    font-size: 6.5px;
     color: var(--ink-light);
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -433,6 +439,22 @@ body::after {
 .page-wrapper {
     padding-top: 48px;
 }
+
+.legal-disclaimer {
+    padding: 8px 52px 10px;
+    text-align: center;
+    border-top: 1px solid var(--rule-light);
+    margin-top: 4px;
+}
+
+.legal-disclaimer p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 6.5px;
+    line-height: 1.6;
+    letter-spacing: 0.04em;
+    color: var(--ink-light);
+    margin: 0;
+}
 </style>
 </head>
 <body>
@@ -474,19 +496,27 @@ body::after {
         <div class="block-header">LIVE</div>
         <div class="block-subhead">A mountain residence above your own private garage.</div>
         <p class="block-body">Full kitchens, living areas, and bathrooms on upper levels. Use it as a primary residence, a private getaway, or a guest house. The finished model unit (The Outlaw) is open for tours.</p>
-        <p class="section-header" style="text-align: center; border-left: none; padding-left: 0;">See the finished model unit</p>
+        <p class="section-header" style="text-align: center; border-left: none; padding-left: 0; margin-top: 36px;">See the finished model unit</p>
 
     <hr class="contact-rule">
-    <div class="contact-single">
-        <div class="contact-single__label">Schedule a Private Tour</div>
-        <div class="contact-single__phone">435.503.3293</div>
+    <div class="contact-qr-row">
+        <div class="contact-qr-row__info">
+            <div class="contact-single">
+                <div class="contact-single__label">Schedule a Private Tour</div>
+                <div class="contact-single__phone">435.503.3293</div>
+            </div>
+            <div class="contact-footer">
+                <span class="contact-footer__hours">Open House: Tues - Fri, 1 - 5 PM &middot; Sat, 11 AM - 3 PM</span>
+            </div>
+        </div>
+        <div class="contact-qr-row__qr">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><defs><clipPath id="clip-bg"><path d="M0 0h220v220H0z"/></clipPath><clipPath id="clip-dot"><path d="M65 11h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-96 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-72 6h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-78 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zM17 59h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zM17 65h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zM11 71h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zM23 77h6v6h-6zm42 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zM23 83h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zM11 89h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zM17 95h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-180 6h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-168 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-186 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-180 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm48 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-144 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm-186 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-168 6h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-162 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm42 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-144 6h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm30 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-54 6h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6z"/></clipPath><clipPath id="clip-sq00"><path d="M11 11v42h42V11zm6 6h30v30H17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d00"><path d="M23 23h18v18H23z"/></clipPath><clipPath id="clip-sq10"><path d="M209 11h-42v42h42zm-6 6v30h-30V17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d10"><path d="M197 23v18h-18V23z"/></clipPath><clipPath id="clip-sq01"><path d="M11 209h42v-42H11zm6-6v-30h30v30z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d01"><path d="M23 197v-18h18v18z"/></clipPath></defs><path fill="none" d="M0 0h220v220H0z" clip-path="url(#clip-bg)"/><path fill="#130C0E" d="M0 0h220v220H0z" clip-path="url(#clip-dot)"/><path fill="#130C0E" d="M11 11h42v42H11z" clip-path="url(#clip-sq00)"/><path fill="#130C0E" d="M23 23h18v18H23z" clip-path="url(#clip-d00)"/><path fill="#130C0E" d="M167 11h42v42h-42z" clip-path="url(#clip-sq10)"/><path fill="#130C0E" d="M179 23h18v18h-18z" clip-path="url(#clip-d10)"/><path fill="#130C0E" d="M11 167h42v42H11z" clip-path="url(#clip-sq01)"/><path fill="#130C0E" d="M23 179h18v18H23z" clip-path="url(#clip-d01)"/></svg>
+            <div class="qr-sub">Scan for floor plans, pricing &amp; showings</div>
+        </div>
     </div>
-    <div class="contact-footer">
-        <span class="contact-footer__hours">Open House: Tues - Fri, 1 - 5 PM &middot; Sat, 11 AM - 3 PM</span>
-    </div>
-    <div class="qr-block">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220"><defs><clipPath id="clip-bg"><path d="M0 0h220v220H0z"/></clipPath><clipPath id="clip-dot"><path d="M65 11h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-96 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-72 6h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-78 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm-84 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zM17 59h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zM17 65h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zM11 71h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zM23 77h6v6h-6zm42 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zM23 83h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zM11 89h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zM17 95h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm-180 6h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-168 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm30 0h6v6h-6zm36 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-186 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-180 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm48 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-144 6h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm-186 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-168 6h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-162 6h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm42 0h6v6h-6zm-174 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm30 0h6v6h-6zm18 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm-144 6h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm30 0h6v6h-6zm12 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm-138 6h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm24 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm18 0h6v6h-6zm24 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm-132 6h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm12 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm-54 6h6v6h-6zm24 0h6v6h-6zm18 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm6 0h6v6h-6zm36 0h6v6h-6zm12 0h6v6h-6z"/></clipPath><clipPath id="clip-sq00"><path d="M11 11v42h42V11zm6 6h30v30H17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d00"><path d="M23 23h18v18H23z"/></clipPath><clipPath id="clip-sq10"><path d="M209 11h-42v42h42zm-6 6v30h-30V17z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d10"><path d="M197 23v18h-18V23z"/></clipPath><clipPath id="clip-sq01"><path d="M11 209h42v-42H11zm6-6v-30h30v30z" clip-rule="evenodd"/></clipPath><clipPath id="clip-d01"><path d="M23 197v-18h18v18z"/></clipPath></defs><path fill="none" d="M0 0h220v220H0z" clip-path="url(#clip-bg)"/><path fill="#130C0E" d="M0 0h220v220H0z" clip-path="url(#clip-dot)"/><path fill="#130C0E" d="M11 11h42v42H11z" clip-path="url(#clip-sq00)"/><path fill="#130C0E" d="M23 23h18v18H23z" clip-path="url(#clip-d00)"/><path fill="#130C0E" d="M167 11h42v42h-42z" clip-path="url(#clip-sq10)"/><path fill="#130C0E" d="M179 23h18v18h-18z" clip-path="url(#clip-d10)"/><path fill="#130C0E" d="M11 167h42v42H11z" clip-path="url(#clip-sq01)"/><path fill="#130C0E" d="M23 179h18v18H23z" clip-path="url(#clip-d01)"/></svg>
-        <div class="qr-sub">Scan for floor plans, pricing &amp; showings</div>
+
+    <div class="legal-disclaimer">
+        <p>&copy;2026 Christie&rsquo;s International Real Estate. All Rights Reserved. This Christie&rsquo;s International Real Estate brokerage is independently owned and operated and fully supports the principles of the Fair Housing Act and is an Equal Opportunity Employer. All information should be independently reviewed and verified for accuracy. If you are currently working with a Realtor, this is not intended as a solicitation.</p>
     </div>
 
     </div>
